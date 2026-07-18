@@ -1,0 +1,25 @@
+{
+  "name": "@clarity-fintech/clrty-audit-bot",
+  "version": "0.1.0",
+  "description": "Sentry ↔ Linear self-healing loop enriched with CLRTY-1 tip context",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "test": "CLRTY_RPC_SMOKE=0 vitest run",
+    "smoke": "CLRTY_RPC_SMOKE=1 vitest run tests/smoke.test.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "license": "Apache-2.0"
+}
