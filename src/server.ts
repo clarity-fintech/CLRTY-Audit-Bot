@@ -4,6 +4,8 @@ import { loadClrty1Config, probeClrty1, CLRTY1_CHAIN_ID } from "./clrty1.js";
 import { parseSentryWebhook } from "./sentry_webhook.js";
 import { applyHealing } from "./healing.js";
 import { linearConfigured } from "./linear.js";
+import { validateEbpfPolicy } from "./security/validate_ebpf.js";
+import { poolLoopsVersion } from "./liquidity/pool_loops.js";
 
 async function readJson(req: IncomingMessage): Promise<unknown> {
   const chunks: Buffer[] = [];
@@ -30,11 +32,18 @@ export function createApp() {
       if (req.method === "GET" && url.pathname === "/health") {
         const cfg = loadClrty1Config();
         const probe = await probeClrty1(cfg);
+        const ebpf = validateEbpfPolicy();
         return send(res, 200, {
           ok: true,
           service: "CLRTY-Audit-Bot",
           chainId: CLRTY1_CHAIN_ID,
           clrty1: probe,
+          ebpf_policy: {
+            ok: ebpf.ok,
+            version: ebpf.version,
+            error: ebpf.error,
+          },
+          pool_loops: poolLoopsVersion(),
           linear: linearConfigured() ? "live" : "mock_file_sink",
         });
       }

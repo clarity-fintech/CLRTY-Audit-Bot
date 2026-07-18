@@ -1,0 +1,19 @@
+{
+  "skill_id": "CLRTY-AB-001",
+  "name": "CLRTY Audit Bot",
+  "components": [
+    "https://www.clarity-fintech.com/"
+  ],
+  "operational_logic": {
+    "intent": "Sentry healing enriched with CLRTY-1 tip",
+    "execution_path": "Webhook -> probeClrty1 enrich -> Linear mock ticket",
+    "substrate": "CLRTY-1"
+  },
+  "security_hardening": "eBPF-monitored socket connection to CLRTY-1 RPC for tip enrichment",
+  "clrty1": {
+    "chain_id": "clrty-1",
+    "numeric_chain_id": 1202,
+    "denom": "uclrty",
+    "rpc_env": "CLRTY_L1_RPC"
+  }
+}

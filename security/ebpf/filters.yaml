@@ -1,0 +1,34 @@
+# Deny-by-default eBPF / packet-filter policy for CLRTY-1 settlement path.
+# CI validates schema only — does not load into kernel.
+version: "0.1.0"
+mode: deny_by_default
+policy_id: clrty1-settlement-path
+allowed_destinations:
+  - host: rpc.clarity-fintech.com
+    ports: [443]
+    purpose: clrty1_rpc
+  - host: api.clarity-fintech.com
+    ports: [443]
+    purpose: clrty1_api
+  - host: api.devnet.clarity-fintech.com
+    ports: [443]
+    purpose: clrty1_devnet
+  - host: api.testnet.clarity-fintech.com
+    ports: [443]
+    purpose: clrty1_testnet
+  - host: 127.0.0.1
+    ports: [8545]
+    purpose: local_rpc
+  - host: api.1inch.dev
+    ports: [443]
+    purpose: oneinch_fusion
+  - host: 1inch.io
+    ports: [443]
+    purpose: oneinch
+  - host: tether.to
+    ports: [443]
+    purpose: usdt_rail_docs
+denied:
+  - any_other_egress
+notes:
+  - Load with bpftool/tc only in hardened environments; see README.md
