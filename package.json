@@ -9,7 +9,8 @@
     "start": "node dist/server.js",
     "dev": "tsx src/server.ts",
     "test": "CLRTY_RPC_SMOKE=0 vitest run",
-    "smoke": "CLRTY_RPC_SMOKE=1 vitest run tests/smoke.test.ts"
+    "smoke": "node scripts/smoke-clrty1.mjs",
+    "test:live": "CLRTY_LIVE=1 vitest run tests/clrty1_live.test.ts"
   },
   "engines": {
     "node": ">=20"
