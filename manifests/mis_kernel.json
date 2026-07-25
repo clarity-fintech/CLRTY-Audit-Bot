@@ -1,0 +1,10 @@
+{
+  "active_kernel": "misc",
+  "active_only": true,
+  "download": "https://github.com/clarity-fintech/CLRTY-MIS-Kernel",
+  "zip": "https://github.com/clarity-fintech/developer_kit/raw/main/dist/mis-kernel-misc.zip",
+  "binary": "bin/misc",
+  "settlement_network": "clrty-1",
+  "settlement_chain_id": 1202,
+  "updated_at": "2026-07-25T17:38:56Z"
+}
